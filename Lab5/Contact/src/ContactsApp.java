@@ -98,7 +98,6 @@ public class ContactsApp {
         contacts.add(new Contact("Alice", "987654321"));
         contacts.add(new Contact("Bob", "111222333"));
 
-        // Получение аспекта сортировки от пользователя
         Scanner scanner = new Scanner(System.in);
         System.out.print("Выберите аспект сортировки (name, mobileNumber): ");
         String sortAspect = scanner.nextLine();
