@@ -35,12 +35,30 @@ class Contact implements Comparable<Contact> {
         this.mobileNumber = mobileNumber;
     }
 
+    public Contact(String name, String mobileNumber, String workNumber, String homeNumber, String email, String webpage, String address) {
+        this.name = name;
+        this.mobileNumber = mobileNumber;
+        this.workNumber = workNumber;
+        this.homeNumber = homeNumber;
+        this.email = email;
+        this.website = webpage;
+        this.address = address;
+    }
+
     public String getName() {
         return name;
     }
 
     public String getMobileNumber() {
         return mobileNumber;
+    }
+
+    public String getWorkNumber() {
+        return workNumber;
+    }
+
+    public String getHomeNumber() {
+        return homeNumber;
     }
 
 
@@ -94,21 +112,31 @@ class Contact implements Comparable<Contact> {
 public class ContactsApp {
     public static void main(String[] args) {
         List<Contact> contacts = new ArrayList<>();
-        contacts.add(new Contact("John", "123456789"));
-        contacts.add(new Contact("Alice", "987654321"));
-        contacts.add(new Contact("Bob", "111222333"));
+        Contact contact1 = new Contact("John Doe", "123456789", "987654321", "111111111", "john.doe@example.com", "www.example.com", "123 Main St");
+        Contact contact2 = new Contact("Jane Smith", "987654321", "123456789", "222222222", "jane.smith@example.com", "www.example.com", "456 Elm St");
+        Contact contact3 = new Contact("Alice Johnson", "555555555", "444444444", "333333333", "alice.johnson@example.com", "www.example.com", "789 Oak St");
+
+        contacts.add(contact1);
+        contacts.add(contact2);
+        contacts.add(contact3);
 
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Выберите аспект сортировки (name, mobileNumber): ");
+        System.out.print("Выберите аспект сортировки (1.name,2.mobileNumber,3.workNumber,4.homeNumber,введите номер аспекта): ");
         String sortAspect = scanner.nextLine();
 
         Comparator<Contact> comparator;
         switch (sortAspect) {
-            case "name":
+            case "1":
                 comparator = Comparator.comparing(Contact::getName);
                 break;
-            case "mobileNumber":
+            case "2":
                 comparator = Comparator.comparing(Contact::getMobileNumber);
+                break;
+            case "3":
+                comparator = Comparator.comparing(Contact::getWorkNumber);
+                break;
+            case "4":
+                comparator = Comparator.comparing(Contact::getHomeNumber);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid sort aspect: " + sortAspect);
